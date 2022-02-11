@@ -1,0 +1,3 @@
+- 👋 Hi, I’m @bowlwinkle
+- 👀 I’m interested in full stack projects and although not as experienced as many, would love to expand my knownledge with graphics.
+- 📫 How to reach me: lucas.gansberg@gmail.com
