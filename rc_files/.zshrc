@@ -1,3 +1,14 @@
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# plugins
+plugins=(
+  git
+  dotenv
+)
+
+source $ZSH/oh-my-zsh.sh
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -49,6 +60,12 @@ zinit cdreplay -q
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# # plugins
+# plugins = (
+#   git
+#   dotenv
+# )
+
 # Keybindings
 bindkey -e
 bindkey '^p' history-search-backward
@@ -84,6 +101,9 @@ alias c='clear'
 alias la='ls -la'
 alias ep='code ~/.zshrc'
 
+# # Work Shortcut aliases
+# alias notes='code ~/git/work/notes'
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
@@ -91,9 +111,19 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# AWS Quick Access  
+# Functions/Helpers
 
-alias currentAWSAct='aws sts get-caller-identity --query Account --output text'
-alias showAccountDetails='aws sts get-caller-identity'
-alias aws_dev='aws sts get-caller-identity --profile RAD_DEV'
-alias aws_pre_prod='aws sts get-caller-identity --profile RAD_PRE_PROD'
+64creds() {
+  echo -n "${1}:${2}" | openssl base64 | pbcopy
+}
+
+path_add() {
+  echo "Set only for working session"
+  export PATH="$PATH:${1}"
+  echo $PATH
+}
+
+path_set() {
+  export currentDir=`pwd`
+  path_add $currentDir
+}
