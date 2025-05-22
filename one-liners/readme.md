@@ -1,0 +1,1 @@
+* Criticize in private, praise in public
